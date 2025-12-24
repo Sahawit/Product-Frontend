@@ -32,6 +32,7 @@ export default function EditProductPage() {
             name,
             price,
             stock,
+            description,
         });
 
         router.push(`/product/${id}`);
@@ -57,6 +58,8 @@ export default function EditProductPage() {
             <div className="space-1">
                 <p>ราคา</p>
                 <input
+                    min={0}
+                    max={1000000}
                     type="number"
                     value={price}
                     onChange={e => setPrice(Number(e.target.value))}
@@ -67,6 +70,8 @@ export default function EditProductPage() {
             <div className="space-1">
                 <p>จำนวน</p>
                 <input
+                    min={0}
+                    max={1000000}
                     type="number"
                     value={stock}
                     onChange={e => setStock(Number(e.target.value))}
@@ -79,6 +84,7 @@ export default function EditProductPage() {
                 <textarea
                     value={description}
                     onChange={e => setDescription(e.target.value)}
+                    maxLength={100}
                     className="w-full p-2 rounded bg-zinc-700 hover:bg-zinc-600 transition"
                     placeholder="ระบุรายละเอียดสินค้า..."
                 />

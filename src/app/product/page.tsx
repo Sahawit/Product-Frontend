@@ -27,33 +27,39 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="w-full px-10 py-6">
-      <div className="flex justify-center items-center mb-10">
-        <h1 className="text-4xl font-bold">📦 รายการสินค้า</h1>
+    <div className="px-10 py-8">
+      <h1 className="text-4xl font-bold text-center mb-10">
+        📦 รายการสินค้า
+      </h1>
 
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map(product => (
           <Link
             key={product.id}
             href={`/product/${product.id}`}
-            className="block bg-zinc-800 hover:bg-zinc-700 p-4 rounded-lg border border-zinc-700 transition"
+            className="bg-zinc-800 rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col justify-between"
           >
-            <div className="flex justify-between items-center ">
-              <div>
-                <p className="font-semibold text-2xl">{product.name}</p>
-                <p className="text-zinc-400 text-lg">
-                  ราคา {product.price} บาท 
-                </p>
-                <p className="text-zinc-400 text-lg">คงเหลือ {product.stock}</p>
+            {/* ชื่อสินค้า */}
+            <h2 className="text-2xl font-bold mb-4 text-white">
+              {product.name}
+            </h2>
 
-              </div>
-
-              <span className="text-blue-400 text-lg font-medium transition-transform duration-300 hover:scale-90 origin-right">
-                ดูรายละเอียด →
-              </span>
+            {/* ราคา */}
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1 rounded-full w-fit mb-3">
+              ราคาสินค้า {product.price} ฿
             </div>
+
+            {/* คงเหลือ */}
+            <p className="inline-flex items-center gap-2 bg-orange-100 text-orange-500 px-4 py-1 rounded-full w-fit mb-3">
+              สินค้าคงเหลือ : {product.stock} ชิ้น
+            </p>
+
+            {/* ลิงก์ดูรายละเอียด */}
+            <span
+              className=" text-white font-medium mt-auto self-end transition-transform duration-200 hover:scale-90 origin-right"
+            >
+              ดูรายละเอียด →
+            </span>
           </Link>
         ))}
       </div>

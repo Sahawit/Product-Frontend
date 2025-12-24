@@ -51,6 +51,8 @@ export default function CreateProductPage() {
 
         <input
           type="number"
+          min={0}
+          max={1000000}
           className="w-full px-4 py-2 rounded bg-zinc-900 border border-zinc-700"
           placeholder="ราคา"
           value={price}
@@ -59,6 +61,8 @@ export default function CreateProductPage() {
 
         <input
           type="number"
+          min={0}
+          max={1000000}
           className="w-full px-4 py-2 rounded bg-zinc-900 border border-zinc-700"
           placeholder="จำนวน"
           value={stock}
@@ -67,6 +71,7 @@ export default function CreateProductPage() {
 
         <input
           type="text"
+          maxLength={100}
           className="w-full px-4 py-2 rounded bg-zinc-900 border border-zinc-700"
           placeholder="คำอธิบาย"
           value={description}
