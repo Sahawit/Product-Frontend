@@ -13,6 +13,7 @@ export default function EditProductPage() {
     const [price, setPrice] = useState<number>(0);
     const [stock, setStock] = useState<number>(0);
     const [description, setDescription] = useState('');
+    const [color, setColor] = useState('#ff3b3b');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -21,9 +22,23 @@ export default function EditProductPage() {
             setPrice(res.data.price);
             setStock(res.data.stock);
             setDescription(res.data.description || '');
+            setColor(res.data.color || '#000000');
             setLoading(false);
         });
     }, [id]);
+
+    const COLORS = [
+        { name: 'red', value: '#ff3b3b' },
+        { name: 'green', value: '#22c55e' },
+        { name: 'blue', value: '#3b82f6' },
+        { name: 'yellow', value: '#facc15' },
+        { name: 'black', value: '#000000' },
+        { name: 'white', value: '#ffffff' },
+        { name: 'pink', value: '#ec4899' },
+        { name: 'purple', value: '#a855f7' },
+    ];
+
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,6 +47,7 @@ export default function EditProductPage() {
             name,
             price,
             stock,
+            color,
             description,
         });
 
@@ -78,6 +94,29 @@ export default function EditProductPage() {
                     className="w-full p-2 rounded bg-zinc-700 hover:bg-zinc-600 transition"
                     placeholder="จำนวน"
                 />
+                <div className="space-y-2">
+                    <p>เลือกสีสินค้า</p>
+
+                    <div className="flex gap-3 flex-wrap">
+                        {COLORS.map(c => (
+                            <button
+                                key={c.value}
+                                type="button"
+                                onClick={() => setColor(c.value)}
+                                className={`
+                    w-10 h-10 rounded-full border-2 transition
+                    ${color === c.value
+                                        ? 'border-white scale-110'
+                                        : 'border-zinc-600 hover:scale-105'}
+                `}
+                                style={{ backgroundColor: c.value }}
+                                title={c.name}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+
             </div>
             <div className="space-y-1">
                 <p>คำอธิบายสินค้า</p>

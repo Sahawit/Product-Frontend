@@ -9,6 +9,8 @@ type Product = {
   name: string;
   price: number;
   stock: number;
+  description: string;
+  color: string;
 };
 
 export default function ProductDetailPage() {
@@ -51,12 +53,25 @@ export default function ProductDetailPage() {
 
   return (
     <div className="max-w-md mx-auto bg-zinc-800 p-6 rounded-xl">
-      <h2 className="text-2xl font-bold mb-4">รายละเอียดสินค้า</h2>
+      <h2 className="text-4xl font-bold mb-4">รายละเอียดสินค้า</h2>
 
-      <p>ชื่อ: {product.name}</p>
-      <p>ราคา: {product.price} บาท</p>
-      <p>คงเหลือ: {product.stock}</p>
-      <p>คำอธิบาย: {product.description}</p>
+      <p className='text-2xl'>ชื่อสินค้า:</p>
+      <p className='text-2xl text-blue-300'>{product.name}</p>
+      <p className='text-2xl'>ราคาสินค้า:</p>
+      <p className='text-2xl text-green-300'>{product.price} ฿ </p>
+      <div className="flex items-center gap-3 text-2xl text-zinc-400">
+        <span>สีของสินค้า:</span>
+
+        <div
+          className="w-8 h-8 rounded-full border border-white"
+          style={{ backgroundColor: product.color }}
+          title={product.color}
+        />
+      </div>
+
+      <p className='text-2xl text-orange-300'>{product.stock} ชิ้น</p>
+      <p className='text-2xl'>คำอธิบาย:</p>
+      <p className='text-2xl text-violet-300'>{product.description}</p>
       <div className="flex gap-3 mt-6">
         <button
           onClick={() => router.push(`/product/${id}/edit`)}
